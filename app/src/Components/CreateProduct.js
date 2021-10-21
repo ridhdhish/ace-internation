@@ -5,8 +5,6 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { GrFormClose } from "react-icons/gr";
 import { addProduct } from "../store/action/product";
 
-import imageToBase64 from "image-to-base64/browser";
-
 export default function CreateProduct() {
   const [isVisible, setIsVisible] = useState(false);
 

@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 
 import { MdModeEdit, MdDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
-import { setProducts } from "../store/action/product";
+import { setProducts } from "../../store/action/product";
 
-export default function Products() {
+export default function ProductList() {
   const product = useSelector((state) => state.product);
   console.log({ products: product.products });
 
