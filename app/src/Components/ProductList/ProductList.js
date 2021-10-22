@@ -16,38 +16,45 @@ export default function ProductList() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="mr-6">
       {product && product.products.length ? (
         <table
-          style={{
-            width: "100vw",
-            borderCollapse: "collapse",
-            border: "1px solid black",
-          }}
+          style={{ width: "100%" }}
+          className="table-fixed border-2 border-gray-300"
         >
           <thead>
-            <tr>
-              <th style={{ border: "1px solid black" }}>Product Name</th>
-              <th style={{ border: "1px solid black" }}>Vat</th>
-              <th style={{ border: "1px solid black" }}>Total Stock</th>
-              <th style={{ border: "1px solid black" }}>
+            <tr className="h-11">
+              <th className="border-2 border-gray-300">Product Name</th>
+              <th className="border-2 border-gray-300">Vat</th>
+              <th className="border-2 border-gray-300">Total Stock</th>
+              <th className="border-2 border-gray-300">
                 Price (gross) per Qty
               </th>
-              <th style={{ border: "1px solid black" }}>Price (net) per Qty</th>
-              <th style={{ border: "1px solid black" }}>Product Image</th>
-              <th style={{ border: "1px solid black" }}>Action</th>
+              <th className="border-2 border-gray-300">Price (net) per Qty</th>
+              <th className="border-2 border-gray-300">Product Image</th>
+              <th className="border-2 border-gray-300">Action</th>
             </tr>
           </thead>
 
           <tbody>
             {product.products.map((p, index) => (
-              <tr key={index}>
-                <td style={{ border: "1px solid black" }}>{p.name}</td>
-                <td style={{ border: "1px solid black" }}>{p.vat}%</td>
-                <td style={{ border: "1px solid black" }}>{p.stock}</td>
-                <td style={{ border: "1px solid black" }}>${p.grossPrice}</td>
-                <td style={{ border: "1px solid black" }}>${p.netPrice}</td>
-                <td style={{ border: "1px solid black" }}>
+              <tr className="h-14" key={index}>
+                <td className="border-2 border-gray-300 pl-2 font-medium">
+                  {p.name}
+                </td>
+                <td className="border-2 border-gray-300 pl-2 font-medium">
+                  {p.vat}%
+                </td>
+                <td className="border-2 border-gray-300 pl-2 font-medium">
+                  {p.stock}
+                </td>
+                <td className="border-2 border-gray-300 pl-2 font-medium">
+                  ${p.grossPrice}
+                </td>
+                <td className="border-2 border-gray-300 pl-2 font-medium">
+                  ${p.netPrice}
+                </td>
+                <td className="border-2 border-gray-300 pl-2 font-medium">
                   <img
                     style={{ width: 100, height: 100 }}
                     id="img"
@@ -55,7 +62,7 @@ export default function ProductList() {
                     alt="logo"
                   />
                 </td>
-                <td style={{ border: "1px solid black" }}>
+                <td className="border-2 border-gray-300 pl-2 font-medium">
                   <button>
                     <MdModeEdit />
                   </button>

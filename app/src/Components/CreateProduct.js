@@ -44,190 +44,165 @@ export default function CreateProduct() {
   return (
     <div>
       <button
-        style={{
-          backgroundColor: "white",
-          border: 0,
-          fontSize: "1rem",
-          marginBottom: 10,
-          cursor: "pointer",
-        }}
+        className="flex text-md justify-center items-center font-semibold bg-gray-200 p-1 rounded mb-3"
         onClick={() => {
           setIsVisible(true);
         }}
       >
-        <AiOutlinePlus style={{ marginBottom: -2.5, marginRight: 5 }} />
+        <AiOutlinePlus className="font-bold" />
         Add
       </button>
       {isVisible ? (
-        <form
+        <div
           style={{
-            width: "400px",
-            border: "1px solid black",
-            padding: 5,
-            marginBottom: 10,
+            width: "100vw",
+            height: "100vh",
+            position: "absolute",
+            top: 0,
+            left: 0,
           }}
+          className="flex justify-center items-center"
         >
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
+              position: "absolute",
+              inset: 0,
+              zIndex: -10,
+              opacity: "0.8",
             }}
-          >
-            <h3>Product</h3>
-            <GrFormClose
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                setIsVisible(false);
-              }}
-            />
-          </div>
-          <div
+            className="bg-black"
+          ></div>
+          <form
+            className="rounded-md p-2 mb-3 bg-blue-400"
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: 10,
+              width: "400px",
             }}
           >
-            <label>Product Name</label>
-            <input
-              type="text"
-              name="name"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: 10,
-            }}
-          >
-            <label>Vat</label>
-            <select
-              name="vat"
-              id="vat"
-              onChange={(e) => {
-                setVat(e.target.value);
-                setNetPrice(grossPrice - (e.target.value * grossPrice) / 100);
-              }}
-            >
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="25">25</option>
-            </select>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: 10,
-            }}
-          >
-            <label>Price (gross)</label>
-            <input
-              type="number"
-              name="gross"
-              value={grossPrice}
-              onChange={(e) => {
-                if (!e.target.value) {
-                  setGrossPrice(0);
-                  return;
-                }
-                setGrossPrice(e.target.value);
+            <div className="flex justify-between items-center">
+              <h3 className="text-lg font-semibold">Product</h3>
+              <GrFormClose
+                size={20}
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  setIsVisible(false);
+                }}
+              />
+            </div>
+            <div className="mb-3 mt-5">
+              <label className="block text-sm font-semibold">
+                Product Name
+              </label>
+              <input
+                className="focus:ring focus:ring-blue-700 focus:border-opacity-0 rounded-sm focus:outline-none w-64 h-10 pl-2 text-gray-600"
+                type="text"
+                name="name"
+                value={name}
+                placeholder="e.g. Mouse"
+                autoComplete="off"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+            </div>
+            <div className="mb-3 mt-5">
+              <label className="block text-sm font-semibold">Vat</label>
+              <select
+                className="focus:ring focus:ring-blue-700 focus:border-opacity-0 rounded-sm focus:outline-none w-64 h-10 pl-2 text-gray-600"
+                name="vat"
+                id="vat"
+                onChange={(e) => {
+                  setVat(e.target.value);
+                  setNetPrice(grossPrice - (e.target.value * grossPrice) / 100);
+                }}
+              >
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="25">25</option>
+              </select>
+            </div>
+            <div className="mb-3 mt-5">
+              <label className="block text-sm font-semibold">
+                Price (gross)
+              </label>
+              <input
+                className="focus:ring focus:ring-blue-700 focus:border-opacity-0 rounded-sm focus:outline-none w-64 h-10 pl-2 text-gray-600"
+                type="number"
+                name="gross"
+                value={grossPrice}
+                autoComplete="off"
+                onChange={(e) => {
+                  if (!e.target.value) {
+                    setGrossPrice(0);
+                    return;
+                  }
+                  setGrossPrice(e.target.value);
 
-                setNetPrice(e.target.value - (vat * e.target.value || 0) / 100);
-              }}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: 10,
-            }}
-          >
-            <label>Price (net)</label>
-            <input
-              type="number"
-              name="net"
-              value={netPrice}
-              onChange={() => {}}
-              disabled
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: 10,
-            }}
-          >
-            <label>Total Stock</label>
-            <input
-              type="number"
-              name="stock"
-              value={stock}
-              onChange={(e) => {
-                setStock(e.target.value);
-              }}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: 10,
-            }}
-          >
-            <label>Product Image</label>
-            <input
-              type="file"
-              name="image"
-              accept="image/png, image/jpg"
-              onChange={async (e) => {
-                const res = e.target.files[0];
-                setImg(res);
-              }}
-            />
-          </div>
-          <div>
-            <button
-              type="submit"
-              style={{
-                backgroundColor: "green",
-                border: 0,
-                color: "white",
-                fontWeight: "bold",
-                marginRight: 5,
-                marginTop: 15,
-              }}
-              onClick={addProductHandler}
-            >
-              Add
-            </button>
-            <button
-              style={{
-                backgroundColor: "red",
-                border: 0,
-                color: "white",
-                fontWeight: "bold",
-              }}
-            >
-              Cancel
-            </button>
-          </div>
-          {err.error ? <p style={{ color: "red" }}>{err.msg}</p> : []}
-        </form>
+                  setNetPrice(
+                    e.target.value - (vat * e.target.value || 0) / 100
+                  );
+                }}
+              />
+            </div>
+            <div className="mb-3 mt-5">
+              <label className="block text-sm font-semibold">Price (net)</label>
+              <input
+                className="rounded-sm bg-gray-300 w-64 h-10 pl-2"
+                type="number"
+                name="net"
+                value={netPrice}
+                onChange={() => {}}
+                disabled
+              />
+            </div>
+            <div className="mb-3 mt-5">
+              <label className="block text-sm font-semibold">Total Stock</label>
+              <input
+                className="focus:ring focus:ring-blue-700 focus:border-opacity-0 rounded-sm focus:outline-none w-64 h-10 pl-2 text-gray-600"
+                type="number"
+                name="stock"
+                value={stock}
+                autoComplete="off"
+                onChange={(e) => {
+                  setStock(e.target.value);
+                }}
+              />
+            </div>
+            <div className="mb-3 mt-5">
+              <label className="block text-sm font-semibold">
+                Product Image
+              </label>
+              <input
+                className="w-64 h-10"
+                type="file"
+                name="image"
+                accept="image/png, image/jpg"
+                onChange={async (e) => {
+                  const res = e.target.files[0];
+                  setImg(res);
+                }}
+              />
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="text-white bg-green-900 rounded-full w-20 h-8 font-semibold"
+                onClick={addProductHandler}
+              >
+                Add
+              </button>
+              <button
+                className="text-white bg-red-600 rounded-full w-20 h-8 font-semibold ml-3"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsVisible(false);
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+            {err.error ? <p style={{ color: "red" }}>{err.msg}</p> : []}
+          </form>
+        </div>
       ) : (
         []
       )}

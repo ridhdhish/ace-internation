@@ -34,7 +34,7 @@ module.exports.createProduct = async (req, res) => {
         return res.status(401).json({ message: "Cannot create new product" });
       }
 
-      res.status(200).json("{ product }");
+      res.status(200).json({ product });
     });
   } catch (err) {
     console.log(err);
